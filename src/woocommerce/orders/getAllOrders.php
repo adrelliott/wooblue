@@ -14,7 +14,15 @@ $woocommerce = new Automattic\WooCommerce\Client(
     $options
 );
 
-$orders = $woocommerce->get('orders');
+// Get all orders (up to 100)
+$orders = $woocommerce->get('orders', ['per_page' => 100]);
+
+// Get orders with ID=?
+$product_id = 3864;
+$orders_with = $woocommerce->get('orders', [
+    'per_page' => 100,
+    'product' => $product_id
+]);
 
 
 // use Automattic\WooCommerce\Client;

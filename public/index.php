@@ -100,7 +100,7 @@
                     <p
                         class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                         >
-                        Total sales
+                        No of sales
                     </p>
                     <p
                         class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -363,6 +363,70 @@
                 </span>
             </div>
         </div>
+<br><br>
+         <!-- Orders Tabe -->
+        <h2 class="mb-4 mt-64" >Orders (from WooCommerce) with product 3864 (Organic bar soap)</h2>
+        <div class="w-full overflow-hidden rounded-lg shadow-xs mb-32">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                    <thead>
+                        <tr
+                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                            >
+                            <th class="px-4 py-3">ID</th>
+                            <th class="px-4 py-3">Customer</th>
+                            <th class="px-4 py-3">Items</th>
+                            <th class="px-4 py-3">£</th>
+                        </tr>
+                    </thead>
+                    <tbody
+                        class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                        >
+                        <?php foreach ($orders_with as $order): ?>
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo $order->id; ?>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class=" text-sm">
+                                    <div>
+                                        <p class="font-semibold">
+                                            <?php echo $order->billing->first_name . ' ' . $order->billing->last_name; ?>
+                                        </p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                                            <?php echo $order->billing->email ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <div class="flex flex-col items-left text-sm">
+                                    <?php foreach ($order->line_items as $line_item): ?>
+                                    <div class="">
+                                        <p class="text-xs ">
+                                            <?php
+                                                echo
+                                                $line_item->product_id
+                                                . '  ' .
+                                                $line_item->name
+                                                . ' x ' .
+                                                $line_item->quantity
+                                            ?>
+                                        </p>
+                                    </div>
+                                <?php endforeach; ?>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                £<?php echo $order->total; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <!-- Charts -->
         <h2
         class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
@@ -431,3 +495,5 @@
 </main>
 <!-- /index.php -->
 <?php require('partials/footer.php'); ?>
+
+
